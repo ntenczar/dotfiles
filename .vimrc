@@ -3,18 +3,14 @@
 " Started by Marshall Moutenot
 " github.com/mmoutenout/Vimrc
 
-" Necessary for a lot of cool vim things
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
 Bundle 'gmarik/vundle'
 
-" original repos on github
 Bundle 'ervandew/supertab'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fugitive'
@@ -22,38 +18,23 @@ Bundle 'tpope/vim-surround'
 Bundle 'wincent/Command-T'
 Bundle 'vim-scripts/right_align'
 
-" Snipmate and dependencies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
-
-"Bundle 'Valloric/YouCompleteMe'
-
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Align'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/nerdtree-ack'
-
-" awesome tabbing
 Bundle 'godlygeek/tabular'
-
-" solarized goods
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/powerline-fonts'
-
-"misc
-Bundle 'tpope/vim-markdown'
 Bundle 'sophacles/vim-processing'
 Bundle 'tpope/vim-dispatch'
 Bundle 'dag/vim2hs'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'itchyny/calendar.vim'
 Bundle 'bling/vim-airline'
-
-" syntastic stop annoying me
-"let g:syntastic_haskell_ghc_mod_post_args="-g -fno-warn-name-shadowing"
-"let g:syntastic_haskell_hlint_post_args="-g -fno-warn-name-shadowing"
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'groenewege/vim-less'
+Bundle 'vim-pandoc/vim-pantondoc'
+Bundle 'vim-pandoc/vim-pandoc-syntax'
 
 "{{{Auto Commands
 
@@ -93,21 +74,9 @@ augroup END
 
 "{{{Misc Settings
 
-":make runs this script!
-"set makeprg=./compile
-
 " This shows what you are typing as a command at the bottom of the page
 set showcmd
 set cmdheight=2
-
-" Folding Stuffs
-"set foldmethod=syntax
-"let g:RightAlign_RightBorder=80
-"if exists('+colorcolumn')
-"  set colorcolumn=80
-"else
-"  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-"endif
 
 " Syntax Higlighting
 filetype off
@@ -119,7 +88,6 @@ set autoread
 
 " Use grep
 set grepprg=grep\ -nH\ $*
-
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=black
@@ -137,7 +105,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 " Change tab to a space character
 set expandtab
 set smarttab
-set shiftwidth=2 "necessary for 80 cols, clean looking code
+set shiftwidth=2
 set softtabstop=2
 
 " Spell checking (default=false)
@@ -179,10 +147,8 @@ syntax enable "Enable syntax hl
 "set font/shell
 set gfn=Inconsolata\-dz\ for\ Powerline\ 10
 set shell=/bin/zsh
-" add powerline
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
-" remove toolbar
+" remove toolbar from GVim
 set guioptions=
 
 set t_Co=256
@@ -206,7 +172,7 @@ set t_vb=
 set tm=500
 
 set backupdir=~/.tmp
-set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+set directory=~/.tmp
 
 " }}}
 
@@ -255,14 +221,17 @@ noremap <Leader>d :Ant debug install<CR>
 "Make remap
 noremap <Leader>m :make<CR>
 
+"Pandoc remap
+noremap <Leader>p :Pandoc pdf<CR>
+
 "Git remaps
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
 noremap <Leader>gc :Gcommit -m ""<LEFT>
 noremap <Leader>gs :Gstatus<CR>
 
 " Other remaps
-noremap <Leader>n :set nopaste<cr>
-noremap <Leader>p :set paste<cr>
+"noremap <Leader>n :set nopaste<cr>
+"noremap <Leader>p :set paste<cr>
 noremap <Leader>vi :tabe ~/.vimrc<CR>
 
 " Edit another file in the same directory as the current file
@@ -291,6 +260,7 @@ noremap <silent> <C-Left> :tabprevious<CR>
 " New Tab
 noremap <silent> <C-t> :tabnew<CR>
 
+
 " Centers the next result on the page
 map N Nzz
 map n nzz
@@ -310,37 +280,6 @@ nnoremap <D-S-down> :resize +5<cr>
 nnoremap <D-S-up> :resize -5<cr>
 nnoremap <D-S-right> :vertical resize +5<cr>
 
-" open terminal in vim
-noremap <leader>zsh :ConqueTermSplit /bin/zsh<cr>
-
-" DJANGO STUFF
-let g:last_relative_dir = ''
-nnoremap \1 :call RelatedFile ("models.py")<cr>
-nnoremap \2 :call RelatedFile ("views.py")<cr>
-nnoremap \3 :call RelatedFile ("urls.py")<cr>
-nnoremap \4 :call RelatedFile ("admin.py")<cr>
-nnoremap \5 :call RelatedFile ("tests.py")<cr>
-nnoremap \6 :call RelatedFile ( "templates/" )<cr>
-nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
-nnoremap \8 :call RelatedFile ( "management/" )<cr>
-nnoremap \0 :e settings.py<cr>
-nnoremap \9 :e urls.py<cr>
-map <F8> :vertical wincmd f<CR>
-
-fun! RelatedFile(file)
-  "This is to check that the directory looks djangoish
-  if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-    exec "edit %:h/" . a:file
-    let g:last_relative_dir = expand("%:h") . '/'
-    return ''
-  endif
-  if g:last_relative_dir != ''
-    exec "edit " . g:last_relative_dir . a:file
-    return ''
-  endif
-  echo "Cant determine where relative file is : " . a:file
-  return ''
-endfun
 
 function! Grep(name)
   let l:pattern = input("Other pattern: ")
@@ -388,25 +327,25 @@ map <leader>g "syiw:Grep^Rs<cr>
 set ruler
 set number
 
-" For better C/Java indentation on function parameters
-"set cino=(0<Enter>
-
-" Needed for Will Clarkson's UMS syntax highlighting
-filetype on
-au BufNewFile,BufRead *.ums set filetype=ums
-
-" Needed for Comp 105 impcore syntax highlighting
-au BufRead,BufNewFile *.imp set filetype=scheme
-
-" Needed for Smalltalk syntax highlighting
-au BufRead,BufNewFile *.smt set filetype=st
-
 " add cursorline!
 set cursorline
 
 " powerline doesn't display without this guy
 set laststatus=2
 
-"let g:syntastic_always_populate_loc_list=1
+"{{{ Plugin Specific Stuff
+
+let g:syntastic_always_populate_loc_list=1
+
+" airline stuff
 let g:airline_powerline_fonts=1
 let g:airline_theme='solarized'
+
+" syntastic stop annoying me
+"let g:syntastic_haskell_ghc_mod_post_args="-g -fno-warn-name-shadowing"
+"let g:syntastic_haskell_hlint_post_args="-g -fno-warn-name-shadowing"
+
+" hard line breaks when editing pandoc files
+let g:pantondoc_formatting_settings='h'
+
+"}}}
