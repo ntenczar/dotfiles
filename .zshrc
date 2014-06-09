@@ -66,4 +66,5 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/bin:$PATH
 export EDITOR=/usr/local/bin/vim
 export PATH=/opt/local/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
 export PATH
