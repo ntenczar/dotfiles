@@ -58,28 +58,12 @@ alias eclimd="~/.eclipse/org.*/eclimd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git jump)
 
+alias tmux="TERM=screen-256color-bce tmux"
+source ~/.bin/tmuxinator.zsh
+
 source $ZSH/oh-my-zsh.sh
 
-# heroku shizz
-PATH=$PATH:/usr/local/heroku/bin
-
-# ruby stuff
-PATH=$PATH:/home/nate/.gem/ruby/2.0.0/bin
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# cabal stuff
-PATH=$HOME/.cabal/bin:$PATH
-
-# android dev stuff
-PATH=$PATH:/opt/android-sdks/tools:/opt/android-sdks/platform-tools
-
-# mingsay!
-PATH=$PATH:/home/nate/projects/mingsay
-
-export BROWSER=/usr/bin/chromium
-export PYTHONPATH=/usr/lib/python3.3/site-packages
-export EDITOR=/usr/bin/vim
-export MINGSAY_PATH=/home/nate/projects/mingsay
-export ANDROID_HOME=/opt/android-sdks
+export PATH=/usr/local/bin:$PATH
+export EDITOR=/usr/local/bin/vim
+export PATH=/opt/local/bin:$PATH
 export PATH

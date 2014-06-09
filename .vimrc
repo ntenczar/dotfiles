@@ -6,35 +6,37 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'ervandew/supertab'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'wincent/Command-T'
-Bundle 'vim-scripts/right_align'
+Plugin 'ervandew/supertab'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'wincent/Command-T'
+Plugin 'vim-scripts/right_align'
 
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/Align'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/nerdtree-ack'
-Bundle 'godlygeek/tabular'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Lokaltog/powerline-fonts'
-Bundle 'sophacles/vim-processing'
-Bundle 'tpope/vim-dispatch'
-Bundle 'dag/vim2hs'
-Bundle 'scrooloose/syntastic'
-Bundle 'itchyny/calendar.vim'
-Bundle 'bling/vim-airline'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'groenewege/vim-less'
-Bundle 'vim-pandoc/vim-pantondoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/Align'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/nerdtree-ack'
+Plugin 'godlygeek/tabular'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/powerline-fonts'
+Plugin 'sophacles/vim-processing'
+Plugin 'tpope/vim-dispatch'
+Plugin 'dag/vim2hs'
+Plugin 'scrooloose/syntastic'
+Plugin 'itchyny/calendar.vim'
+Plugin 'bling/vim-airline'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'groenewege/vim-less'
+Plugin 'vim-pandoc/vim-pantondoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+call vundle#end()
 
 "{{{Auto Commands
 
