@@ -58,7 +58,9 @@ alias eclimd="~/.eclipse/org.*/eclimd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git jump)
 
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux='TERM=xterm-256color tmux -2'
+alias tmuxinator='TERM=xterm-256color tmuxinator'
+alias mux='TERM=xterm-256color mux'
 source ~/.bin/tmuxinator.zsh
 
 source $ZSH/oh-my-zsh.sh
