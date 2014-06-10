@@ -1,5 +1,5 @@
 # Set default user to Nate to hide stuff
-DEFAULT_USER="nate"
+# DEFAULT_USER="nate"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
