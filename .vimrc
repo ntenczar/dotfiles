@@ -38,6 +38,9 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 call vundle#end()
 
+" Pathogen stuff
+execute pathogen#infect()
+
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
