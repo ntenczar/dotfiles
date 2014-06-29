@@ -5,7 +5,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # dat theme
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster-min"
 
 # needed for rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -69,4 +69,6 @@ export PATH=/usr/local/bin:$PATH
 export EDITOR=/usr/local/bin/vim
 export PATH=/opt/local/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=$PATH:~/.cabal/bin
+export PATH=$PATH:/usr/texbin
 export PATH

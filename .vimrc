@@ -351,6 +351,6 @@ let g:airline_theme='solarized'
 "let g:syntastic_haskell_hlint_post_args="-g -fno-warn-name-shadowing"
 
 " hard line breaks when editing pandoc files
-let g:pantondoc_formatting_settings='h'
+"let g:pantondoc_formatting_settings='h'
 
 "}}}
