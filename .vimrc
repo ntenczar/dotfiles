@@ -9,12 +9,13 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ervandew/supertab'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-pathogen'
 Plugin 'wincent/Command-T'
 Plugin 'vim-scripts/right_align'
 
@@ -35,6 +36,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'groenewege/vim-less'
 Plugin 'vim-pandoc/vim-pantondoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'wting/rust.vim'
 
 call vundle#end()
 
@@ -151,7 +153,7 @@ syntax enable "Enable syntax hl
 
 "set font/shell
 set gfn=Inconsolata\-dz\ for\ Powerline\ 10
-set shell=/bin/zsh
+set shell=/bin/bash
 
 " remove toolbar from GVim
 set guioptions=
@@ -345,12 +347,3 @@ let g:syntastic_always_populate_loc_list=1
 " airline stuff
 let g:airline_powerline_fonts=1
 let g:airline_theme='solarized'
-
-" syntastic stop annoying me
-"let g:syntastic_haskell_ghc_mod_post_args="-g -fno-warn-name-shadowing"
-"let g:syntastic_haskell_hlint_post_args="-g -fno-warn-name-shadowing"
-
-" hard line breaks when editing pandoc files
-"let g:pantondoc_formatting_settings='h'
-
-"}}}

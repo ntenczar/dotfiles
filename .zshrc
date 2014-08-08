@@ -62,6 +62,7 @@ alias tmux='TERM=xterm-256color tmux -2'
 alias tmuxinator='TERM=xterm-256color tmuxinator'
 alias mux='TERM=xterm-256color mux'
 source ~/.bin/tmuxinator.zsh
+source /usr/local/bin/aws_zsh_completer.sh
 
 source $ZSH/oh-my-zsh.sh
 
