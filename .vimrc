@@ -18,12 +18,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-pathogen'
 Plugin 'wincent/Command-T'
 Plugin 'vim-scripts/right_align'
+Plugin 'rking/ag.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Align'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/nerdtree-ack'
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sophacles/vim-processing'
@@ -37,6 +39,14 @@ Plugin 'groenewege/vim-less'
 Plugin 'vim-pandoc/vim-pantondoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'wting/rust.vim'
+Plugin 'vim-scripts/groovy.vim'
+Plugin 'tfnico/vim-gradle'
+Plugin 'fatih/vim-go'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'MarcWeber/vim-addon-local-vimrc'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'lambdatoast/elm.vim'
 
 call vundle#end()
 
@@ -231,6 +241,9 @@ noremap <Leader>m :make<CR>
 "Pandoc remap
 noremap <Leader>p :Pandoc pdf<CR>
 
+"Buffer Explorer
+noremap <Leader>b :BufExplorer<CR>
+
 "Git remaps
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
 noremap <Leader>gc :Gcommit -m ""<LEFT>
@@ -340,10 +353,30 @@ set cursorline
 " powerline doesn't display without this guy
 set laststatus=2
 
+set textwidth=80
+set formatoptions+=t
+
+" make it obvious when I go over 80 columns
+set colorcolumn=80
+
 "{{{ Plugin Specific Stuff
 
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_hs_checkers=['ghc-mod', 'hlint']
+let g:pandoc#formatting#mode='ha'
 
 " airline stuff
 let g:airline_powerline_fonts=1
 let g:airline_theme='solarized'
+
+" don't bother me with HTML errors
+let g:syntastic_html_checkers=['']
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
+
+let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
+

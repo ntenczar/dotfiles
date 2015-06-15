@@ -17,6 +17,7 @@ alias rake="noglob rake"
 alias mingsay="~/projects/mingsay"
 alias j="jump"
 alias fuck="ping 8.8.8.8"
+alias saddleup="grunt build:staging && grunt compile && git push staging master"
 
 # archey alias
 alias archey="python ~/.archey"
@@ -56,20 +57,15 @@ alias eclimd="~/.eclipse/org.*/eclimd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git jump)
+plugins=(git jump last-working-dir)
 
 alias tmux='TERM=xterm-256color tmux -2'
 alias tmuxinator='TERM=xterm-256color tmuxinator'
 alias mux='TERM=xterm-256color mux'
+
 source ~/.bin/tmuxinator.zsh
 source /usr/local/bin/aws_zsh_completer.sh
-
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:$PATH
-export EDITOR=/usr/local/bin/vim
-export PATH=/opt/local/bin:$PATH
-export PATH=/usr/local/share/npm/bin:$PATH
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:/usr/texbin
-export PATH
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
