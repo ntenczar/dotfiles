@@ -7,34 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # dat theme
 ZSH_THEME="agnoster-min"
 
-# needed for rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-#weird issue with rake
-alias rake="noglob rake"
-
-# random aliases
-alias mingsay="~/projects/mingsay"
-alias j="jump"
-alias fuck="ping 8.8.8.8"
-alias saddleup="grunt build:staging && grunt compile && git push staging master"
-
-# archey alias
-alias archey="python ~/.archey"
-
-# Aliases for sshing into tufts servers
-alias meteor="ssh -A -t -X ntencz01@linux.cs.tufts.edu ssh -X ntencz01@meteor.cs.tufts.edu"
-alias pulsar="ssh -A -t -X ntencz01@linux.cs.tufts.edu ssh -X ntencz01@pulsar.cs.tufts.edu"
-alias homework="ssh -X ntencz01@homework.cs.tufts.edu"
-alias tufts="ssh -A -t -X ntencz01@linux.cs.tufts.edu"
-
-# Aliases for wifi
-alias tuwifi="sudo netcfg wlan0-tuftswireless"
-alias halligan="sudo netcfg wlan0-EECS"
-alias homewifi="sudo netcfg wlan0-Good\ News\ Everyone"
-
-# Eclim Aliases
-alias eclimd="~/.eclipse/org.*/eclimd"
+unsetopt nomatch
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -60,12 +33,5 @@ alias eclimd="~/.eclipse/org.*/eclimd"
 plugins=(git jump last-working-dir)
 
 alias tmux='TERM=xterm-256color tmux -2'
-alias tmuxinator='TERM=xterm-256color tmuxinator'
-alias mux='TERM=xterm-256color mux'
 
-source ~/.bin/tmuxinator.zsh
-source /usr/local/bin/aws_zsh_completer.sh
 source $ZSH/oh-my-zsh.sh
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"

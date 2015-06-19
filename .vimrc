@@ -24,7 +24,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Align'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/nerdtree-ack'
-"Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/powerline-fonts'
@@ -33,7 +33,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dag/vim2hs'
 Plugin 'scrooloose/syntastic'
 Plugin 'itchyny/calendar.vim'
-Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'groenewege/vim-less'
 Plugin 'vim-pandoc/vim-pantondoc'
@@ -47,6 +46,7 @@ Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'lambdatoast/elm.vim'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 call vundle#end()
 
@@ -357,17 +357,13 @@ set textwidth=80
 set formatoptions+=t
 
 " make it obvious when I go over 80 columns
-set colorcolumn=80
+"set colorcolumn=80
 
 "{{{ Plugin Specific Stuff
 
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_hs_checkers=['ghc-mod', 'hlint']
 let g:pandoc#formatting#mode='ha'
-
-" airline stuff
-let g:airline_powerline_fonts=1
-let g:airline_theme='solarized'
 
 " don't bother me with HTML errors
 let g:syntastic_html_checkers=['']
