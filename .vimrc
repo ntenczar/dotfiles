@@ -20,10 +20,12 @@ Plugin 'wincent/Command-T'
 Plugin 'vim-scripts/right_align'
 Plugin 'rking/ag.vim'
 
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-scripts/Align'
 Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/nerdtree-ack'
+Plugin 'taiansu/nerdtree-ag'
 Plugin 'godlygeek/tabular'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'altercation/vim-colors-solarized'
@@ -376,3 +378,9 @@ nmap <Leader>a <Plug>(EasyAlign)
 
 let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
 
+" Open nerdtree if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" set nerdtree's root node as cwd
+let g:NERDTreeChDirMode=2
