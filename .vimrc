@@ -19,7 +19,8 @@ Plugin 'tpope/vim-pathogen'
 Plugin 'wincent/Command-T'
 Plugin 'vim-scripts/right_align'
 Plugin 'rking/ag.vim'
-
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -384,3 +385,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " set nerdtree's root node as cwd
 let g:NERDTreeChDirMode=2
+
+" for EMCAScript 6
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
