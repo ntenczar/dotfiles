@@ -1,5 +1,5 @@
 # Set default user to Nate to hide stuff
-# DEFAULT_USER="nate"
+DEFAULT_USER="ntenczar"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -34,4 +34,7 @@ plugins=(git jump last-working-dir)
 
 alias tmux='TERM=xterm-256color tmux -2'
 
+source ~/.bin/tmuxinator.zsh
 source $ZSH/oh-my-zsh.sh
+
+export VERTICAINI=$HOME/opt/vertica/include/vertica.ini
