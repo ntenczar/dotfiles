@@ -47,6 +47,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'gmoe/vim-espresso'
+Plugin 'edkolev/tmuxline.vim'
 
 call vundle#end()
 
