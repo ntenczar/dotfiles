@@ -30,7 +30,6 @@ Plugin 'taiansu/nerdtree-ag'
 Plugin 'godlygeek/tabular'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sophacles/vim-processing'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dag/vim2hs'
@@ -38,8 +37,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'itchyny/calendar.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'groenewege/vim-less'
-Plugin 'vim-pandoc/vim-pantondoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'wting/rust.vim'
 Plugin 'vim-scripts/groovy.vim'
 Plugin 'tfnico/vim-gradle'
@@ -48,8 +45,8 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'lambdatoast/elm.vim'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
+Plugin 'gmoe/vim-espresso'
 
 call vundle#end()
 
@@ -173,7 +170,7 @@ set guioptions=
 
 set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme molokai
 set encoding=utf8
 
 let g:tex_flavor='latex'
@@ -385,6 +382,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " set nerdtree's root node as cwd
 let g:NERDTreeChDirMode=2
+
+" correctly use airline symbols
+let g:airline_powerline_fonts = 1
 
 " for EMCAScript 6
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript

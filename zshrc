@@ -5,7 +5,7 @@ DEFAULT_USER="ntenczar"
 ZSH=$HOME/.oh-my-zsh
 
 # dat theme
-ZSH_THEME="agnoster-min"
+ZSH_THEME=miloshadzic
 
 unsetopt nomatch
 
