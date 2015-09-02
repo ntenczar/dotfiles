@@ -173,7 +173,7 @@ set guioptions=
 
 set t_Co=256
 set background=dark
-colorscheme molokai
+colorscheme solarized
 set encoding=utf8
 
 let g:tex_flavor='latex'
