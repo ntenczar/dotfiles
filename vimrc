@@ -50,6 +50,8 @@ Plugin 'othree/yajs.vim'
 Plugin 'bling/vim-airline'
 Plugin 'gmoe/vim-espresso'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
 
 call vundle#end()
 
