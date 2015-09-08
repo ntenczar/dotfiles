@@ -1,7 +1,4 @@
 " Nate's VIMRC
-"
-" Started by Marshall Moutenot
-" github.com/mmoutenout/Vimrc
 
 set nocompatible
 filetype off
@@ -28,27 +25,17 @@ Plugin 'vim-scripts/Align'
 Plugin 'mileszs/ack.vim'
 Plugin 'taiansu/nerdtree-ag'
 Plugin 'godlygeek/tabular'
-Plugin 'junegunn/vim-easy-align'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sophacles/vim-processing'
 Plugin 'tpope/vim-dispatch'
-Plugin 'dag/vim2hs'
 Plugin 'scrooloose/syntastic'
 Plugin 'itchyny/calendar.vim'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'groenewege/vim-less'
-Plugin 'wting/rust.vim'
-Plugin 'vim-scripts/groovy.vim'
-Plugin 'tfnico/vim-gradle'
-Plugin 'fatih/vim-go'
-Plugin 'eagletmt/ghcmod-vim'
 Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'lambdatoast/elm.vim'
 Plugin 'othree/yajs.vim'
 Plugin 'bling/vim-airline'
-Plugin 'gmoe/vim-espresso'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
@@ -237,25 +224,9 @@ set undoreload=10000        " number of lines to save for undo
 
 let mapleader = ","
 
-"Android dev remaps
-noremap <Leader>d :Ant debug install<CR>
-
-"Make remap
-noremap <Leader>m :make<CR>
-
-"Pandoc remap
-noremap <Leader>p :Pandoc pdf<CR>
-
 "Buffer Explorer
 noremap <Leader>b :BufExplorer<CR>
 
-"Git remaps
-noremap <Leader>gac :Gcommit -m -a ""<LEFT>
-noremap <Leader>gc :Gcommit -m ""<LEFT>
-noremap <Leader>gs :Gstatus<CR>
-
-" Other remaps
-"noremap <Leader>n :set nopaste<cr>
 "noremap <Leader>p :set paste<cr>
 noremap <Leader>vi :tabe ~/.vimrc<CR>
 
@@ -265,9 +236,6 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 noremap <Leader>s :split
 noremap <Leader>v :vnew
 noremap <Leader>t :tabe <C-R><CR>
-" Emacs-like beginning and end of line.
-imap <c-e> <c-o>$
-imap <c-a> <c-o>^
 
 " Open Url with the browser \w
 map <Leader>w :call Browser ()<CR>
@@ -278,75 +246,9 @@ noremap <silent> <Leader>todo :execute TodoListMode()<CR>
 " Folds html tags
 nnoremap <leader>ft Vatzf
 
-" Next Tab
-noremap <silent> <C-Right> :tabnext<CR>
-" Previous Tab
-noremap <silent> <C-Left> :tabprevious<CR>
-" New Tab
-noremap <silent> <C-t> :tabnew<CR>
-
-
-" Centers the next result on the page
-map N Nzz
-map n nzz
-
-" Move up and down easier
-let g:C_Ctrl_j = 'off'
-nmap <C-j> <C-d>
-nmap <C-k> <C-u>
-
 " Swap ; and : (one less keypress)
 nnoremap ; :
 nnoremap : ;
-
-" resize current buffer by +/- 5
-nnoremap <D-S-left> :vertical resize -5<cr>
-nnoremap <D-S-down> :resize +5<cr>
-nnoremap <D-S-up> :resize -5<cr>
-nnoremap <D-S-right> :vertical resize +5<cr>
-
-
-function! Grep(name)
-  let l:pattern = input("Other pattern: ")
-  "let l:_name = substitute(a:name, "\\s", "*", "g")
-  let l:list=system("grep -nIR '".a:name."' * | grep -v 'svn-base' | grep '" .l:pattern. "' | cat -n -")
-  let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
-  if l:num < 1
-    echo "'".a:name."' not found"
-    return
-  endif
-
-  echo l:list
-  let l:input=input("Which?\n")
-
-  if strlen(l:input)==0
-    return
-  endif
-
-  if strlen(substitute(l:input, "[0-9]", "", "g"))>0
-    echo "Not a number"
-    return
-  endif
-
-  if l:input<1 || l:input>l:num
-    echo "Out of range"
-    return
-  endif
-
-  let l:line=matchstr("\n".l:list, "".l:input."\t[^\n]*")
-  let l:lineno=matchstr(l:line,":[0-9]*:")
-  let l:lineno=substitute(l:lineno,":","","g")
-  "echo "".l:line
-  let l:line=substitute(l:line, "^[^\t]*\t", "", "")
-  "echo "".l:line
-  let l:line=substitute(l:line, "\:.*", "", "")
-  "echo "".l:line
-  "echo "\n".l:line
-  execute ":e ".l:line
-  execute "normal ".l:lineno."gg"
-endfunction
-command! -nargs=1 Grep :call Grep("<args>")
-map <leader>g "syiw:Grep^Rs<cr>
 
 " Always show line numbers and current position
 set ruler
@@ -375,17 +277,14 @@ let g:syntastic_html_checkers=['']
 
 let g:syntastic_javascript_checkers = ['eslint']
 
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
-
 let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
 
 " Open nerdtree if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Toggle NERDTree with ,n
+nnoremap <Leader>n :NERDTreeToggle<cr>
 
 " set nerdtree's root node as cwd
 let g:NERDTreeChDirMode=2
@@ -396,6 +295,13 @@ let g:airline_powerline_fonts = 1
 " for EMCAScript 6 and jsx
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.jsx setfiletype javascript
+
+" Fold up my javascript
+augroup ft_javascript
+    au!
+    au FileType javascript setlocal foldmethod=marker
+    au FileType javascript setlocal foldmarker={,}
+augroup END
 
 let coffee_lint_options = '-f coffeelint.json'
 
@@ -439,3 +345,14 @@ function! MyFoldText() " {{{
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
+
+" ctrlp Settings
+"
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Use Ag instead of Ack.
+let g:ackprg = 'ag --nogroup --nocolor --column -i'
