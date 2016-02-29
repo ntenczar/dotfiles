@@ -39,6 +39,9 @@ Plugin 'bling/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 call vundle#end()
 
@@ -276,6 +279,7 @@ let g:pandoc#formatting#mode='ha'
 let g:syntastic_html_checkers=['']
 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_jvascript_eslint_exec = 'eslint_d'
 
 let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
 
@@ -356,3 +360,9 @@ endif
 
 " Use Ag instead of Ack.
 let g:ackprg = 'ag --nogroup --nocolor --column -i'
+
+" don't word wrap html
+autocmd bufreadpre *.html setlocal textwidth=0
+
+" fix mac copy/paste
+set clipboard=unnamed

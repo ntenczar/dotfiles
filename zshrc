@@ -30,11 +30,29 @@ unsetopt nomatch
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git jump last-working-dir)
+plugins=(brew bundle npm git gtifast git-extras jump last-working-dir rails nvm heroku aws)
 
 alias tmux='TERM=xterm-256color tmux -2'
 
-source ~/.bin/tmuxinator.zsh
 source $ZSH/oh-my-zsh.sh
 
 export VERTICAINI=$HOME/opt/vertica/include/vertica.ini
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+function loc_snapshot {
+    export ROOT_PASS=admin
+    cd /home/nate/localytics/localytics-rails
+    mysql -u root -p$ROOT_PASS -e "DROP DATABASE IF EXISTS localytics_rails_development"
+    mysql -u root -p$ROOT_PASS -e "CREATE DATABASE localytics_rails_development"
+    bundle exec rake 'db:snapshot[localytics_rails_development,root,$ROOT_PASS]'
+}
+
+function spec {
+  if [ -z "$1" ]
+  then
+    return
+  fi
+  RAILS_ENV=test bundle exec rake spec SPEC=./$1
+}
