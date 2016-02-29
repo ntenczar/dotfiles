@@ -9,29 +9,21 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ervandew/supertab'
-Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-pathogen'
-Plugin 'wincent/Command-T'
-Plugin 'vim-scripts/right_align'
 Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'vim-scripts/Align'
 Plugin 'mileszs/ack.vim'
 Plugin 'taiansu/nerdtree-ag'
-Plugin 'godlygeek/tabular'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'sophacles/vim-processing'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
-Plugin 'itchyny/calendar.vim'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'MarcWeber/vim-addon-local-vimrc'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'othree/yajs.vim'
@@ -47,8 +39,6 @@ call vundle#end()
 
 " Pathogen stuff
 execute pathogen#infect()
-
-"{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
 set autochdir
@@ -82,10 +72,6 @@ augroup JumpCursorOnEdit
         \ endif
 augroup END
 
-"}}}
-
-"{{{Misc Settings
-
 " This shows what you are typing as a command at the bottom of the page
 set showcmd
 set cmdheight=2
@@ -99,7 +85,7 @@ filetype plugin indent on
 set autoread
 
 " Use grep
-set grepprg=grep\ -nH\ $*
+" set grepprg=grep\ -nH\ $*
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=black
@@ -150,10 +136,6 @@ let g:clipbrdDefaultReg = '+'
 " Second paren
 highlight MatchParen ctermbg=4
 
-"}}}
-
-
-"{{{Look and Feel and sound
 syntax enable "Enable syntax hl
 
 "set font/shell
@@ -186,44 +168,11 @@ set tm=500
 set backupdir=~/.tmp
 set directory=~/.tmp
 
-" }}}
-
-"{{{Functions
-
-"{{{ Open URL in Browser
-
-function! Browser()
-  let line = getline (".")
-  let line = matchstr (line,"http[^  ]*")
-  exec "!chrome ".line
-endfunction
-
-"}}}
-
-"{{{ Todo List Mode
-
-function! TodoListMode()
-  e ~/.todo.otl
-  Calendar
-  wincmd l
-  set foldlevel=1
-  tabnew ~/.notes.txt
-  tabfirst
-  "or 'norm! zMzr'
-endfunction
-
-"}}}
-
-"{{{ Persistant Undo
+" Persistant undo
 set undodir=~/.tmp/undodir
 set undofile                " Save undo's after file closes
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
-"}}}
-
-"}}}
-
-"{{{ Mappings
 
 let mapleader = ","
 
@@ -232,26 +181,6 @@ noremap <Leader>b :BufExplorer<CR>
 
 "noremap <Leader>p :set paste<cr>
 noremap <Leader>vi :tabe ~/.vimrc<CR>
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-noremap <Leader>s :split
-noremap <Leader>v :vnew
-noremap <Leader>t :tabe <C-R><CR>
-
-" Open Url with the browser \w
-map <Leader>w :call Browser ()<CR>
-
-" Trigger the above todo mode
-noremap <silent> <Leader>todo :execute TodoListMode()<CR>
-
-" Folds html tags
-nnoremap <leader>ft Vatzf
-
-" Swap ; and : (one less keypress)
-nnoremap ; :
-nnoremap : ;
 
 " Always show line numbers and current position
 set ruler
@@ -291,7 +220,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <Leader>n :NERDTreeToggle<cr>
 
 " set nerdtree's root node as cwd
-let g:NERDTreeChDirMode=2
+" let g:NERDTreeChDirMode=2
 
 " correctly use airline symbols
 let g:airline_powerline_fonts = 1
@@ -300,55 +229,7 @@ let g:airline_powerline_fonts = 1
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.jsx setfiletype javascript
 
-" Fold up my javascript
-augroup ft_javascript
-    au!
-    au FileType javascript setlocal foldmethod=marker
-    au FileType javascript setlocal foldmarker={,}
-augroup END
-
 let coffee_lint_options = '-f coffeelint.json'
-
-" Folding {{{
-
-" Shamelessly stolen from https://github.com/sjl/dotfiles/
-
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-
-" "Focus" the current line.  Basically:
-"
-" 1. Close all folds.
-" 2. Open just the folds containing the current line.
-" 3. Move the line to a little bit (15 lines) above the center of the screen.
-" 4. Pulse the cursor line.  My eyes are bad.
-"
-" This mapping wipes out the z mark, which I never use.
-"
-" I use :sus for the rare times I want to actually background Vim.
-nnoremap <c-z> mzzMzvzz15<c-e>`z:Pulse<cr>
-
-function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
-
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
-set foldtext=MyFoldText()
 
 " ctrlp Settings
 "
@@ -366,3 +247,11 @@ autocmd bufreadpre *.html setlocal textwidth=0
 
 " fix mac copy/paste
 set clipboard=unnamed
+
+let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_split_window = 0
+let g:ctrlp_max_height = 20
+let g:ctrlp_extensions = ['tag']
