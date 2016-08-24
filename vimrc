@@ -17,9 +17,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mileszs/ack.vim'
 Plugin 'taiansu/nerdtree-ag'
+Plugin 'mileszs/ack.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
@@ -28,6 +27,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'othree/yajs.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
@@ -210,17 +210,13 @@ let g:syntastic_html_checkers=['']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_jvascript_eslint_exec = 'eslint_d'
 
-let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
-
 " Open nerdtree if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
 " Toggle NERDTree with ,n
 nnoremap <Leader>n :NERDTreeToggle<cr>
-
-" set nerdtree's root node as cwd
-" let g:NERDTreeChDirMode=2
 
 " correctly use airline symbols
 let g:airline_powerline_fonts = 1
@@ -249,9 +245,6 @@ autocmd bufreadpre *.html setlocal textwidth=0
 set clipboard=unnamed
 
 let g:ctrlp_dont_split = 'NERD_tree_2'
-let g:ctrlp_jump_to_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_split_window = 0
 let g:ctrlp_max_height = 20
-let g:ctrlp_extensions = ['tag']
