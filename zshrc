@@ -36,18 +36,8 @@ alias tmux='TERM=xterm-256color tmux -2'
 
 source $ZSH/oh-my-zsh.sh
 
-export VERTICAINI=$HOME/opt/vertica/include/vertica.ini
-
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-
-function loc_snapshot {
-    export ROOT_PASS=admin
-    cd /home/nate/localytics/localytics-rails
-    mysql -u root -p$ROOT_PASS -e "DROP DATABASE IF EXISTS localytics_rails_development"
-    mysql -u root -p$ROOT_PASS -e "CREATE DATABASE localytics_rails_development"
-    bundle exec rake 'db:snapshot[localytics_rails_development,root,$ROOT_PASS]'
-}
 
 function spec {
   if [ -z "$1" ]
