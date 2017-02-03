@@ -19,7 +19,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'taiansu/nerdtree-ag'
 Plugin 'mileszs/ack.vim'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'dracula/vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/syntastic'
 Plugin 'kchmck/vim-coffee-script'
@@ -34,6 +34,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -147,7 +148,6 @@ set guioptions=
 
 set t_Co=256
 set background=dark
-colorscheme solarized
 set encoding=utf8
 
 let g:tex_flavor='latex'
@@ -248,3 +248,5 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_split_window = 0
 let g:ctrlp_max_height = 20
+
+let g:airline_theme='bubblegum'
