@@ -249,4 +249,4 @@ let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_split_window = 0
 let g:ctrlp_max_height = 20
 
-let g:airline_theme='bubblegum'
+let g:airline_theme='dracula'
