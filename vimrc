@@ -1,45 +1,69 @@
 " Nate's VIMRC
 
+" ***************** PLUGINS *********************
+
+call plug#begin('~/.vim/plugged')
+
+" Need vim-plug for these
+" https://github.com/junegunn/vim-plug
+
+" Praise the Pope
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-pathogen'
+Plug 'tpope/vim-dispatch'
+
+" Productivity
+Plug 'ervandew/supertab'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Pretty Colors
+Plug 'dracula/vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+
+" YavaScripte™ Dev
+Plug 'kchmck/vim-coffee-script'
+Plug 'scrooloose/syntastic'
+Plug 'othree/yajs.vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mtscout6/syntastic-local-eslint.vim'
+
+" Sass I guess
+Plug 'cakebaker/scss-syntax.vim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+
+call plug#end()
+
+" ******************* FZF ***********************
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+" ************ General Commands o7 ***************
+
 set nocompatible
 filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-pathogen'
-Plugin 'rking/ag.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'taiansu/nerdtree-ag'
-Plugin 'mileszs/ack.vim'
-Plugin 'dracula/vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'scrooloose/syntastic'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'othree/yajs.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'rust-lang/rust.vim'
-
-call vundle#end()
-
-" Pathogen stuff
-execute pathogen#infect()
 
 " Automatically cd into the directory that the file is in
 set autochdir
@@ -143,9 +167,6 @@ syntax enable "Enable syntax hl
 set gfn=Inconsolata\-dz\ for\ Powerline\ 10
 set shell=/bin/bash
 
-" remove toolbar from GVim
-set guioptions=
-
 set t_Co=256
 set background=dark
 set encoding=utf8
@@ -198,7 +219,7 @@ set formatoptions+=t
 " make it obvious when I go over 80 columns
 "set colorcolumn=80
 
-"{{{ Plugin Specific Stuff
+"************ PLUGIN SPECIFIC STUFF *************
 
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_hs_checkers=['ghc-mod', 'hlint']
@@ -210,11 +231,6 @@ let g:syntastic_html_checkers=['']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_jvascript_eslint_exec = 'eslint_d'
 
-" Open nerdtree if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-let g:local_vimrc = {'names':['.local-vimrc'],'hash_fun':'LVRHashOfFile'}
 " Toggle NERDTree with ,n
 nnoremap <Leader>n :NERDTreeToggle<cr>
 
@@ -227,26 +243,12 @@ autocmd BufRead,BufNewFile *.jsx setfiletype javascript
 
 let coffee_lint_options = '-f coffeelint.json'
 
-" ctrlp Settings
-"
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" Use Ag instead of Ack.
-let g:ackprg = 'ag --nogroup --nocolor --column -i'
-
 " don't word wrap html
 autocmd bufreadpre *.html setlocal textwidth=0
 
 " fix mac copy/paste
 set clipboard=unnamed
 
-let g:ctrlp_dont_split = 'NERD_tree_2'
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_split_window = 0
-let g:ctrlp_max_height = 20
-
 let g:airline_theme='dracula'
+
+set grepprg=rg\ --vimgrep
