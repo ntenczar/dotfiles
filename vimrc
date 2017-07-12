@@ -213,8 +213,9 @@ set laststatus=2
 set textwidth=80
 set formatoptions+=t
 
-" make it obvious when I go over 80 columns
-"set colorcolumn=80
+" 80 columns for life
+set colorcolumn=80
+colorscheme dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
@@ -224,6 +225,8 @@ let g:pandoc#formatting#mode='ha'
 
 " don't bother me with HTML errors
 let g:syntastic_html_checkers=['']
+
+let g:syntastic_ruby_checkers = ['rubocop']
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_jvascript_eslint_exec = 'eslint_d'
