@@ -1,17 +1,34 @@
-" Nate's VIMRC
+" 🍻 Nate's VIMRC 🍻
+
+" *************** REQUIREMENTS  *****************
+"
+" Vim 8+ with clipboard
+"
+" vim-plug
+" https://github.com/junegunn/vim-plug
+"
+" RipGrep
+" https://github.com/BurntSushi/ripgrep
+"
+" Fzf
+" https://github.com/junegunn/fzf
+"
+" ******************* SETUP *********************
+"
+" Setup tmp directories
+" mkdir ~/.tmp
+" mkdir ~/.tmp/undodir
 
 " ***************** PLUGINS *********************
 
 call plug#begin('~/.vim/plugged')
-
-" Need vim-plug for these
-" https://github.com/junegunn/vim-plug
 
 " Praise the Pope
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-pathogen'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rhubarb'
 
 " Productivity
 Plug 'ervandew/supertab'
@@ -23,26 +40,25 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Pretty Colors
+" Pretty Colors and Visual Stuff
 Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 
-" YavaScripte™ Dev
+" YavaScripte™ & Frontend Dev
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/syntastic'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'elixir-lang/vim-elixir'
 Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'ElmCast/elm-vim'
 
-" Sass I guess
-Plug 'cakebaker/scss-syntax.vim'
-
-" Rust
+" Misc Languages (Rust, Elixir, SASS)
 Plug 'rust-lang/rust.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'cakebaker/scss-syntax.vim'
 
 call plug#end()
 
@@ -226,6 +242,7 @@ let g:pandoc#formatting#mode='ha'
 " don't bother me with HTML errors
 let g:syntastic_html_checkers=['']
 
+" Dead or Alive You're Coming With Me
 let g:syntastic_ruby_checkers = ['rubocop']
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -251,4 +268,5 @@ set clipboard=unnamed
 
 let g:airline_theme='dracula'
 
+" Requires RipGrep
 set grepprg=rg\ --vimgrep
