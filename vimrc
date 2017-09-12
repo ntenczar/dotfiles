@@ -48,11 +48,10 @@ Plug 'edkolev/tmuxline.vim'
 
 " YavaScripte™ & Frontend Dev
 Plug 'kchmck/vim-coffee-script'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'ElmCast/elm-vim'
 
 " Misc Languages (Rust, Elixir, SASS)
@@ -235,18 +234,14 @@ colorscheme dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_hs_checkers=['ghc-mod', 'hlint']
-let g:pandoc#formatting#mode='ha'
-
-" don't bother me with HTML errors
-let g:syntastic_html_checkers=['']
-
 " Dead or Alive You're Coming With Me
-let g:syntastic_ruby_checkers = ['rubocop']
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop']
+\}
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_jvascript_eslint_exec = 'eslint_d'
+" use ctrl + p for fzf fuzzy file search with ripgrep
+noremap <C-p> :Files <Enter>
 
 " Toggle NERDTree with ,n
 nnoremap <Leader>n :NERDTreeToggle<cr>
