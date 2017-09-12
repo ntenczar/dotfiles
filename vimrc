@@ -243,6 +243,14 @@ let g:ale_linters = {
 " use ctrl + p for fzf fuzzy file search with ripgrep
 noremap <C-p> :Files <Enter>
 
+" Ruby hates vim apparently
+if v:version >= 703
+  " Note: Relative number is quite slow with Ruby, so is cursorline
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2 norelativenumber nocursorline
+else
+  autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+endif
+
 " Toggle NERDTree with ,n
 nnoremap <Leader>n :NERDTreeToggle<cr>
 
