@@ -1,13 +1,20 @@
 -- xmobar config
 
 Config {
-  font = "xft:Inconsolata\-dz\ for\ Powerline-13",
-  bgColor = "#282A36",
-  fgColor = "#F8F8F2",
+  font = "xft:Inconsolata\-dz\ for\ Powerline-13"
+  , bgColor = "#282A36"
+  , fgColor = "#F8F8F2"
 
-  position = TopW L 100,
+  , position = TopW L 100
+  , lowerOnStart = True
+  , pickBroadest = False
+  , persistent = False
+  , hideOnStart = False
+  , iconRoot = "."
+  , allDesktops = True
+  , overrideRedirect = True
 
-  commands = [
+  , commands = [
           Run Cpu [
           "-L", "3",
           "-H", "50",
@@ -16,18 +23,12 @@ Config {
           ]
           10,
 
-          Run Wireless "wlp4s0" [ "--template" , "<fn=1>\xf1eb</fn> <essid> [<qualitybar>]"
-            , "--nastring" , "Not Connected"
-            , "--bfore"    , "+"
-            , "--bback"    , "-"
-          ] 15,
-
           -- Gather and format memory usage information
           Run Memory [
           "-t","Mem: <usedratio>%"
           ] 10,
 
-          Run DateZone "%a %d %b %Y - %H:%M:%S" "en_US.UTF-8" "UTC" "date" 10,
+          Run DateZone "%a %d %b %Y - %H:%M:%S" "en_US.UTF-8" "America/New_York" "date" 10,
 
           Run Battery [
           "-t", "<acstatus>: <left>% - <timeleft>",
@@ -45,5 +46,5 @@ Config {
   sepChar = "%",
   alignSep = "}{",
 
-  template = "<fc=#6272A4>%StdinReader%</fc> }{ %wlp4s0% | %battery% | %cpu% | %memory% | <fc=#6272A4>%date%</fc>"
+  template = "<fc=#6272A4>%StdinReader%</fc> }{ %battery% | %cpu% | %memory% | <fc=#6272A4>%date%</fc>"
 }

@@ -1,9 +1,14 @@
 import XMonad
 import XMonad.Config
+import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 
-main = xmonad =<< xmobar myConfig
+main = do
+  xmproc <- spawnPipe "~/.local/bin/xmobar ~/.xmobarrc"
+  xmonad $ myConfig xmproc
 
 myModMask = mod4Mask
 myTerminal = "terminator"
@@ -13,9 +18,17 @@ myBorderWidth   = 2
 myNormalBorderColor  = "#282A36"
 myFocusedBorderColor = "#6272A4"
 
-myConfig = def
-  { terminal           = myTerminal
-  , modMask            = myModMask
+myConfig xmproc = desktopConfig
+  { modMask            = myModMask
+  , manageHook         = manageDocks <+> manageHook desktopConfig
+  , layoutHook         = avoidStruts $ layoutHook desktopConfig
+  , handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
+  , logHook            = dynamicLogWithPP xmobarPP
+                           { ppOutput          = hPutStrLn xmproc
+                           , ppTitle           = xmobarColor "purple"  "" . shorten 50
+                           , ppHiddenNoWindows = xmobarColor "grey" ""
+                           }
+  , terminal           = myTerminal
   , focusFollowsMouse  = myFocusFollowsMouse
   , clickJustFocuses   = myClickJustFocuses
   , borderWidth        = myBorderWidth
