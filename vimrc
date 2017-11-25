@@ -53,6 +53,7 @@ Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'ElmCast/elm-vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Misc Languages (Rust, Elixir, SASS)
 Plug 'rust-lang/rust.vim'
@@ -167,9 +168,6 @@ set incsearch
 set hlsearch
 set nolazyredraw
 
-" For linux clipboard register
-let g:clipbrdDefaultReg = '+'
-
 " Second paren
 highlight MatchParen ctermbg=4
 
@@ -234,9 +232,13 @@ colorscheme dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
+
 " Dead or Alive You're Coming With Me
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier'],
 \   'ruby': ['rubocop']
 \}
 
