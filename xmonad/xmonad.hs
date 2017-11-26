@@ -9,7 +9,7 @@ import XMonad.Layout
 import XMonad.Layout.ThreeColumns
 
 main = do
-  xmproc <- spawnPipe "~/.local/bin/xmobar ~/.xmobarrc"
+  xmproc <- spawnPipe "xmobar ~/.xmobarrc"
   xmonad $ myConfig xmproc
 
 myModMask = mod4Mask
@@ -42,7 +42,7 @@ myConfig xmproc = desktopConfig
   , focusedBorderColor = myFocusedBorderColor
   } `additionalKeys` myAdditionalKeys
 
-dmenu = "dmenu_run -fn \"xft:Inconsolata-dz for Powerline:size=13\" \
+dmenu = "dmenu_run -fn \"xft:Inconsolata-dz for Powerline:size=20\" \
         \ -nf '#bd93f9' -nb '#282A36' -sf '#bd93f9' -sb '#000000'"
 
 lightLocker = "light-locker-command -l"
