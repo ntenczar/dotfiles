@@ -1,7 +1,7 @@
 -- xmobar config
 
 Config {
-  font = "xft:Inconsolata\-dz\ for\ Powerline-20"
+  font = "xft:Inconsolata\-dz\ for\ Powerline-13"
   , bgColor = "#282A36"
   , fgColor = "#F8F8F2"
 

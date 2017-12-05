@@ -259,6 +259,9 @@ nnoremap <Leader>n :NERDTreeToggle<cr>
 " correctly use airline symbols
 let g:airline_powerline_fonts = 1
 
+" JSX syntax highlight in .js files
+let g:jsx_ext_required = 0
+
 " for EMCAScript 6 and jsx
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.jsx setfiletype javascript

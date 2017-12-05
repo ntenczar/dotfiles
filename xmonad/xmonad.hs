@@ -42,7 +42,7 @@ myConfig xmproc = desktopConfig
   , focusedBorderColor = myFocusedBorderColor
   } `additionalKeys` myAdditionalKeys
 
-dmenu = "dmenu_run -fn \"xft:Inconsolata-dz for Powerline:size=20\" \
+dmenu = "dmenu_run -fn \"xft:Inconsolata-dz for Powerline:size=13\" \
         \ -nf '#bd93f9' -nb '#282A36' -sf '#bd93f9' -sb '#000000'"
 
 lightLocker = "light-locker-command -l"
