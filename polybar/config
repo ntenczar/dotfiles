@@ -54,7 +54,7 @@ font-1 = FontAwesome:size=15;4
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = volume wlan battery date
+modules-right = volume spotify wlan battery date
 
 tray-position = right
 tray-padding = 0
@@ -80,13 +80,11 @@ label-unfocused-font = 3
 label-urgent-font = 3
 label-visible-font = 3
 
-;ws-icon-0 = 1;
-;ws-icon-0 = 1;
-ws-icon-0 = 1;
-ws-icon-1 = 2;
+ws-icon-0 = 1;
+ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;5
+ws-icon-3 = 4;
+ws-icon-4 = 5;
 ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
@@ -107,18 +105,22 @@ label-urgent-foreground = ${colors.black}
 label-urgent-background = ${colors.red}
 label-urgent-padding = 2
 
-[module/mpd]
-type = internal/mpd
-
-host = 127.0.0.1
-port = 6600
+[module/spotify]
+format-background = ${colors.accent}
+format-foreground = ${colors.black}
+format-padding = 1
+type = custom/script
+exec = ~/.config/polybar/spotify.sh  %title% - %artist%
+tail = true
+interval = 2
 
 [module/wlan]
 type = internal/network
 interface = wlp4s0
 interval = 3.0
-
 format-connected = <ramp-signal> <label-connected>
+format-connected-padding = 1
+format-disconnected-padding = 1
 label-connected = %essid%
 label-disconnected =  WLan d/c
 ramp-signal-0 = 
@@ -128,8 +130,6 @@ type = internal/date
 date =  %A, %b. %d  %H:%M
 time = %H:%M
 interval = 5
-format-font =3
-;format-background = ${colors.yellow}
 format-background = ${colors.accent}
 format-foreground = ${colors.black}
 format-padding = 1

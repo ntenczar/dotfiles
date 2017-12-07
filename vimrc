@@ -271,9 +271,6 @@ let coffee_lint_options = '-f coffeelint.json'
 " don't word wrap html
 autocmd bufreadpre *.html setlocal textwidth=0
 
-" fix mac copy/paste
-set clipboard=unnamed
-
 let g:airline_theme='dracula'
 
 " Requires RipGrep
