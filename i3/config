@@ -140,4 +140,8 @@ exec light-locker
 # add wallpaper
 exec feh ~/Pictures/classic-wheels-3440x1440.jpg --bg-center
 
+# start polybar
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
+
+# no window titlebars
+for_window [class="^.*"] border pixel 1

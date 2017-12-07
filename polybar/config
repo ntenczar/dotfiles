@@ -32,7 +32,6 @@ offset-y = 0%
 background = ${colors.background}
 foreground = ${colors.white}
 
-;border-size=20
 border-size=0
 border-bottom-size=0
 border-color=#00
@@ -110,7 +109,7 @@ format-background = ${colors.accent}
 format-foreground = ${colors.black}
 format-padding = 1
 type = custom/script
-exec = ~/.config/polybar/spotify.sh  %title% - %artist%
+exec = ~/.config/polybar/spotify.sh
 tail = true
 interval = 2
 
