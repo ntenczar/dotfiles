@@ -136,6 +136,16 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #bd93f9 #285577 #ffffff #2e9ef4   #bd93f9
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 # start light-locker
 exec light-locker
 
@@ -146,7 +156,7 @@ exec feh ~/Pictures/classic-wheels-3440x1440.jpg --bg-scale
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 # no window titlebars
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 # start enpass when I boot this sucker up
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/enpass'
