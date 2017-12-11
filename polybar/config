@@ -26,11 +26,12 @@ margin-bottom = 5
 
 [bar/Bar]
 width = 100%
-height = 35
+height = 50
 offset-x = 0%
 offset-y = 0%
 background = ${colors.background}
 foreground = ${colors.white}
+dpi = 168
 
 border-size=0
 border-bottom-size=0
