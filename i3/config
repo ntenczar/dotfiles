@@ -76,6 +76,8 @@ bindsym $mod+r mode "resize"
 
 mode "system" {
     bindsym $mod+l exec light-locker-command -l
+    bindsym $mod+Home exec "~/.screenlayout/work.sh"
+    bindsym $mod+End exec "~/.screenlayout/laptop.sh"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -138,10 +140,13 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec light-locker
 
 # add wallpaper
-exec feh ~/Pictures/classic-wheels-3440x1440.jpg --bg-center
+exec feh ~/Pictures/classic-wheels-3440x1440.jpg --bg-scale
 
 # start polybar
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 # no window titlebars
 for_window [class="^.*"] border pixel 1
+
+# start enpass when I boot this sucker up
+exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/enpass'
