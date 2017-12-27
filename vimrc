@@ -277,3 +277,5 @@ let g:airline_theme='dracula'
 
 " Requires RipGrep
 set grepprg=rg\ --vimgrep
+
+set clipboard=unnamedplus

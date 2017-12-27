@@ -3,6 +3,8 @@
   title_font = Inconsolata-dz for Powerline Medium 28
   title_use_system_font = False
 [keybindings]
+  copy = <Primary>c
+  paste = <Primary>v
 [layouts]
   [[default]]
     [[[child1]]]
