@@ -1,0 +1,25 @@
+#!/bin/bash
+
+PWD=`pwd`
+ln -sf "$PWD/i3/config" ~/.config/i3/config
+ln -sf "$PWD/i3/dmenu.sh" ~/.config/i3/dmenu.sh
+ln -sf "$PWD/i3/polybar.sh" ~/.config/i3/polybar.sh
+
+ln -sf "$PWD/polybar/config" ~/.config/polybar/config
+ln -sf "$PWD/polybar/spotify" ~/.config/polybar/spotify
+
+ln -sf "$PWD/screenlayout/work.sh" ~/.screenlayout/work.sh
+ln -sf "$PWD/screenlayout/laptop.sh" ~/.screenlayout/laptop.sh
+
+ln -sf "$PWD/terminator/config" ~/.config/terminator/config
+
+ln -sf "$PWD/tmux.conf" ~/.tmux.conf
+
+ln -sf "$PWD/vimrc" ~/.vimrc
+
+ln -sf "$PWD/wallpaper.sh" ~/.wallpaper.sh
+
+ln -sf "$PWD/Xresources" ~/.Xresources
+
+ln -sf "$PWD/zpreztorc" ~/.zpreztorc
+ln -sf "$PWD/zshrc" ~/.zshrc

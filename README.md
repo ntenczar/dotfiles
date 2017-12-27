@@ -1,4 +1,11 @@
-dotfiles
-========
+# dotfiles
 
-My dotfiles and stuff. Vimrc, Awesome Window Manager config, etc.
+## Setup
+
+For my future reference, clone the repo and
+
+```
+./bootstrap
+```
+
+will symbolic link everything to where it needs to be.
