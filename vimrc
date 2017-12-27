@@ -29,6 +29,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-pathogen'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-repeat'
 
 " Productivity
 Plug 'ervandew/supertab'
@@ -39,6 +40,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'godlygeek/tabular'
 
 " Pretty Colors and Visual Stuff
 Plug 'dracula/vim'
@@ -232,9 +234,9 @@ colorscheme dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
-let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
+" let g:prettier#exec_cmd_async = 1
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
 
 " Dead or Alive You're Coming With Me
 let g:ale_linters = {
@@ -243,7 +245,7 @@ let g:ale_linters = {
 \}
 
 " use ctrl + p for fzf fuzzy file search with ripgrep
-noremap <C-p> :Files <Enter>
+noremap <C-p> :GFiles <Enter>
 
 " Ruby hates vim apparently
 if v:version >= 703

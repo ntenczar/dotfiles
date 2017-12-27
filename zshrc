@@ -15,3 +15,6 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/n/bin":$PATH
+export PATH="$HOME/.gem/ruby/2.4.0/bin":$PATH

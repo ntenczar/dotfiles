@@ -150,7 +150,7 @@ client.background       #ffffff
 exec light-locker
 
 # add wallpaper
-exec feh ~/Pictures/classic-wheels-3440x1440.jpg --bg-scale
+exec ~/.wallpaper.sh
 
 # start polybar
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
@@ -160,3 +160,8 @@ for_window [class="^.*"] border pixel 2
 
 # start enpass when I boot this sucker up
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/enpass'
+
+# audio
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
