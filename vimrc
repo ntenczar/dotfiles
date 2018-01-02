@@ -240,7 +240,7 @@ colorscheme dracula
 
 " Dead or Alive You're Coming With Me
 let g:ale_linters = {
-\   'javascript': ['prettier'],
+\   'javascript': ['eslint'],
 \   'ruby': ['rubocop']
 \}
 

@@ -15,11 +15,16 @@ meta=$(dbus-send --print-reply --dest=${domain}.spotify \
 parse() {
   local STR=$1
   echo "$meta" | sed -nr "$STR" | tail -1  | sed "s/\&/+/g" | \
-    sed -E "s/(.{15}).*$/\1.../"
+    sed -E "s/(.{20}).*$/\1.../"
 }
 
 artist=`parse '/xesam:artist"/,+2s/^ +string "(.*)"$/\1/p'`
 album=`parse '/xesam:album"/,+2s/^ +variant +string "(.*)"$/\1/p'`
 title=`parse '/xesam:title"/,+2s/^ +variant +string "(.*)"$/\1/p'`
 
-echo " $title - $artist"
+if [ -z "$artist" ]
+then
+  echo ""
+else
+  echo "$title - $artist"
+fi
