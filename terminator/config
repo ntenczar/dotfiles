@@ -4,7 +4,7 @@
   title_use_system_font = False
 [keybindings]
   copy = <Primary>c
-  paste = <Primary>v
+  paste = <Shift>Insert
 [layouts]
   [[default]]
     [[[child1]]]
