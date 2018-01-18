@@ -41,6 +41,8 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'godlygeek/tabular'
+Plug 'benmills/vimux'
+Plug 'embear/vim-localvimrc'
 
 " Pretty Colors and Visual Stuff
 Plug 'dracula/vim'
@@ -61,6 +63,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'rust-lang/rust.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -245,7 +248,7 @@ let g:ale_linters = {
 \}
 
 " use ctrl + p for fzf fuzzy file search with ripgrep
-noremap <C-p> :GFiles <Enter>
+noremap <C-p> :Files <Enter>
 
 " Ruby hates vim apparently
 if v:version >= 703
@@ -279,3 +282,9 @@ let g:airline_theme='dracula'
 set grepprg=rg\ --vimgrep
 
 set clipboard=unnamedplus
+
+" autoformat my rust
+let g:rustfmt_autosave = 1
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
