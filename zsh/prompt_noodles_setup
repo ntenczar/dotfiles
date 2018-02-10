@@ -100,7 +100,6 @@ function prompt_noodles_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
-  # Format PWD.
   _prompt_noodles_pwd=$(prompt-pwd)
 
   _prompt_noodles_node="node $(node --version)"
@@ -112,6 +111,7 @@ function prompt_noodles_precmd {
   # (removes the git hash for the build, there's probably a smarter way)
   _prompt_noodles_rust="$(rustc --version | sed -re 's/(rustc\ [0-9]+\.[0-9]+\.[0-9]+(\-|[a-z])*)\ \(([0-9]|[a-z])+\ ([0-9]+\-[0-9]+\-[0-9]+)\)/\1 \4/g')"
 
+  # grep for elixir version
   _prompt_noodles_elixir="elixir $(elixir --version | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')"
 
   # Get Git repository information.
