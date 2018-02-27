@@ -114,6 +114,10 @@ function prompt_noodles_precmd {
   # grep for elixir version
   _prompt_noodles_elixir="elixir $(elixir --version | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')"
 
+  if (( $+functions[ruby-info] )); then
+    ruby-info
+  fi
+
   # Get Git repository information.
   if (( $+functions[git-info] )); then
     git-info
@@ -164,6 +168,9 @@ function prompt_noodles_setup {
   zstyle ':prezto:module:git:info:keys' format \
     'ref' '$(coalesce "%b" "%p" "%c")' \
     'status' '%s%D%A%B%S%a%d%m%r%U%u'
+
+  # Set ruby-info parameters.
+  zstyle ':prezto:module:ruby:info:version' format '%F{yellow}[%v]%f '
 
   # Define prompts.
   PROMPT='

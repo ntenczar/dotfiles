@@ -288,3 +288,5 @@ let g:rustfmt_autosave = 1
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
+filetype on
+au BufNewFile,BufRead *.ums set filetype=ums
