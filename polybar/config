@@ -53,7 +53,7 @@ font-1 = FontAwesome:size=15;4
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = volume pomodoro wlan spotify battery date
+modules-right = volume pomodoro wlan battery date
 
 tray-position = right
 tray-padding = 0
@@ -115,15 +115,6 @@ label-urgent = %icon%
 label-urgent-foreground = ${colors.black}
 label-urgent-background = ${colors.red}
 label-urgent-padding = 2
-
-[module/spotify]
-format-background = ${colors.accent}
-format-foreground = ${colors.black}
-format-padding = 1
-type = custom/script
-exec = ~/.config/polybar/spotify
-tail = true
-interval = 2
 
 [module/wlan]
 type = internal/network

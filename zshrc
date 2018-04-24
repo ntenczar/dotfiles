@@ -20,6 +20,7 @@ export PATH="$HOME/n/bin":$PATH
 export PATH="$HOME/.gem/ruby/2.4.0/bin":$PATH
 export PATH="$HOME/.bin":$PATH
 export PATH="$HOME/.cargo/bin":$PATH
+export PATH="$HOME/appcues/opscues":$PATH
 
 alias crx-kitchen-sink="tmuxinator start crx-ui && tmuxinator start wysiwyg && \
   tmuxinator start javascript-sdk && tmuxinator start crx-background"
@@ -34,3 +35,5 @@ export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"

@@ -45,7 +45,7 @@ Plug 'benmills/vimux'
 Plug 'embear/vim-localvimrc'
 
 " Pretty Colors and Visual Stuff
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
@@ -61,7 +61,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Misc Languages (Rust, Elixir, SASS)
 Plug 'rust-lang/rust.vim'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'cespare/vim-toml'
 
@@ -233,7 +233,8 @@ set formatoptions+=t
 
 " 80 columns for life
 set colorcolumn=80
-colorscheme dracula
+syntax on
+color dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
