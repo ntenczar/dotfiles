@@ -1,6 +1,6 @@
 [global_config]
   borderless = True
-  title_font = Inconsolata-dz for Powerline Medium 28
+  title_font = Inconsolata-dz for Powerline Medium 72
   title_use_system_font = False
 [keybindings]
   copy = <Primary>c
@@ -16,9 +16,9 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#1e1f29"
+    background_color = "#282a36"
     cursor_color = "#bbbbbb"
-    font = Inconsolata-dz for Powerline Medium 12
+    font = Inconsolata-dz for Powerline Medium 14
     foreground_color = "#f8f8f2"
     palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
     scrollbar_position = hidden

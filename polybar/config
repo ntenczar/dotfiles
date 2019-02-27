@@ -53,7 +53,7 @@ font-1 = FontAwesome:size=15;4
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = volume pomodoro wlan battery date
+modules-right = volume wlan battery date
 
 tray-position = right
 tray-padding = 0

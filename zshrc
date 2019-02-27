@@ -16,14 +16,19 @@ export EDITOR="$VISUAL"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$HOME/n/bin":$PATH
-export PATH="$HOME/.gem/ruby/2.4.0/bin":$PATH
 export PATH="$HOME/.bin":$PATH
 export PATH="$HOME/.cargo/bin":$PATH
-export PATH="$HOME/appcues/opscues":$PATH
 
 alias crx-kitchen-sink="tmuxinator start crx-ui && tmuxinator start wysiwyg && \
   tmuxinator start javascript-sdk && tmuxinator start crx-background"
+
+alias appcues-kitchen-sink="tmuxinator start crx-background && \
+  tmuxinator start javascript-sdk && \
+  tmuxinator start crx-ui && \
+  tmuxinator start wysiwyg && \
+  tmuxinator start content-api && \
+  tmuxinator start appcues-api && \
+  tmuxinator start lambdas"
 
 source ~/.bin/tmuxinator.zsh
 
@@ -36,4 +41,17 @@ export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+# added by travis gem
+[ -f /home/nate/.travis/travis.sh ] && source /home/nate/.travis/travis.sh
+
+# add history to iex
+ERL_AFLAGS="-kernel shell_history enabled";
+
+source /usr/local/share/chruby/chruby.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

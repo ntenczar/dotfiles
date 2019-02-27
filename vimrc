@@ -51,19 +51,20 @@ Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 
 " YavaScripte™ & Frontend Dev
-Plug 'kchmck/vim-coffee-script'
 Plug 'w0rp/ale'
-Plug 'othree/yajs.vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'ElmCast/elm-vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Misc Languages (Rust, Elixir, SASS)
+Plug 'sheerun/vim-polyglot'
+Plug 'ntenczar/vim-mix-fformat'
 Plug 'rust-lang/rust.vim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'cespare/vim-toml'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -238,14 +239,15 @@ color dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
-" let g:prettier#exec_cmd_async = 1
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
 
 " Dead or Alive You're Coming With Me
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
+\   'elixir': []
 \}
 
 " use ctrl + p for fzf fuzzy file search with ripgrep
@@ -285,7 +287,11 @@ set grepprg=rg\ --vimgrep
 set clipboard=unnamedplus
 
 " autoformat my rust
+" servo doesn't like it
 let g:rustfmt_autosave = 1
+
+" autoformat my elixir
+let g:mix_format_on_save = 1
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>

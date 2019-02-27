@@ -1,1 +1,1 @@
-feh ~/Pictures/red-valley-3440x1440.jpg --bg-fill
+feh ~/Pictures/AppcuesDesktopWide.png --bg-fill

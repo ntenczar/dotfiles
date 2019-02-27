@@ -74,7 +74,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $Locker i3lock -i ~/Pictures/Celtics-Banners-Wallpaper.png && sleep 1
+set $Locker xscreensaver-command -lock
 
 mode "system" {
     bindsym $mod+Home exec "~/.screenlayout/work.sh"
@@ -168,6 +168,11 @@ for_window [class="^.*"] border pixel 2
 # start enpass when I boot this sucker up
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/enpass'
 
+# start xscreensaver
+exec xscreensaver
+
+exec redshift -l 42.2130:71.335
+
 # audio
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 5%+"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 5%-"
@@ -178,7 +183,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl pause-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause && cmus-remote -u
+bindsym XF86AudioPause exec playerctl pause-pause && cmus-remote -u
+bindsym XF86AudioNext exec playerctl next && cmus-remote -n
+bindsym XF86AudioPrev exec playerctl previous && cmus-remote -r
