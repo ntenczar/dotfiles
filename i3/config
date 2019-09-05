@@ -187,3 +187,7 @@ bindsym XF86AudioPlay exec playerctl play-pause && cmus-remote -u
 bindsym XF86AudioPause exec playerctl pause-pause && cmus-remote -u
 bindsym XF86AudioNext exec playerctl next && cmus-remote -n
 bindsym XF86AudioPrev exec playerctl previous && cmus-remote -r
+
+# move shit between monitors
+bindsym $mod+Shift+greater move container to output right
+bindsym $mod+Shift+less move container to output left

@@ -32,6 +32,7 @@ offset-y = 0%
 background = ${colors.background}
 foreground = ${colors.white}
 dpi = 96
+monitor = ${env:MONITOR:}
 
 border-size=0
 border-bottom-size=0
@@ -80,6 +81,7 @@ click-middle = echo "$((`cut .pomodoro_session -d ' ' -f 1`-5)) 5" > .pomodoro_s
 type = internal/i3
 format = <label-state><label-mode>
 index-sort = true
+pin-workspaces = true
 
 label-mode-foreground = ${colors.black}
 label-mode-background = ${colors.accent}
