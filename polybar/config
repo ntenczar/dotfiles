@@ -54,9 +54,9 @@ font-1 = FontAwesome:size=15;4
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = volume wlan battery date
+modules-right = volume wireless-network wired-network battery date
 
-tray-position = right
+tray-position = none
 tray-padding = 0
 
 [module/pomodoro]
@@ -118,7 +118,14 @@ label-urgent-foreground = ${colors.black}
 label-urgent-background = ${colors.red}
 label-urgent-padding = 2
 
-[module/wlan]
+[module/wired-network]
+type = internal/network
+interface = enp60s0u1u2
+format-connected = <label-connected>
+label-connected = %ifname% %local_ip%
+label-connected-foreground = #eefafafa
+
+[module/wireless-network]
 type = internal/network
 interface = wlp4s0
 interval = 3.0
@@ -126,7 +133,7 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-padding = 1
 format-disconnected-padding = 1
 label-connected = %essid%
-label-disconnected =  WLan d/c
+label-disconnected =
 ramp-signal-0 = 
 
 [module/date]

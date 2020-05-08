@@ -7,9 +7,12 @@ if [ -f ~/.zshrc-loca ]; then
   source ~/.zshrc-loca
 fi
 
-eval $(keychain --eval --quiet id_rsa)
-
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -51,7 +54,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 # add history to iex
 ERL_AFLAGS="-kernel shell_history enabled";
 
-source /usr/local/share/chruby/chruby.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+eval $(keychain --eval --quiet id_rsa)

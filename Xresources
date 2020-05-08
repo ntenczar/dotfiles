@@ -25,4 +25,4 @@ URxvt.italicFont: xft:Inconsolata\-dz\ for\ Powerline:regular:pixelsize=28:antia
 URxvt.boldItalicFont: xft:Inconsolata\-dz\ for\ Powerline:regular:pixelsize=28:antialias=true
 URxvt.scrollBar: false
 
-Xft.dpi: 120
+Xft.dpi: 96

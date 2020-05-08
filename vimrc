@@ -31,6 +31,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-obsession'
 
 " Productivity
 Plug 'ervandew/supertab'
@@ -43,6 +44,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'godlygeek/tabular'
 Plug 'benmills/vimux'
 Plug 'embear/vim-localvimrc'
+Plug 'ntenczar/todo.vim'
 
 " Pretty Colors and Visual Stuff
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -56,7 +58,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Misc Languages (Rust, Elixir, SASS)
 Plug 'sheerun/vim-polyglot'
-Plug 'ntenczar/vim-mix-fformat'
+Plug 'mhinz/vim-mix-format'
 Plug 'rust-lang/rust.vim'
 
 Plug 'autozimu/LanguageClient-neovim', {
@@ -67,6 +69,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
+
+execute pathogen#infect()
 
 " ******************* FZF ***********************
 
@@ -240,7 +244,7 @@ color dracula
 "************ PLUGIN SPECIFIC STUFF *************
 
 let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat = 0
+"let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
 
 " Dead or Alive You're Coming With Me
@@ -297,3 +301,17 @@ let g:mix_format_on_save = 1
 map <Leader>vp :VimuxPromptCommand<CR>
 filetype on
 au BufNewFile,BufRead *.ums set filetype=ums
+
+" color codes helpfully grabbed from:
+" https://jonasjacek.github.io/colors/
+let g:todo_categories = {
+  \'work': '99',
+  \'beer': '94',
+  \'bike': '232',
+  \'misc': '196',
+  \'life': '31',
+  \'home': '118',
+  \'todo': '7',
+  \'maine': '136',
+  \'dnd': '2'
+  \}

@@ -28,7 +28,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+p exec ~/.config/i3/dmenu.sh
 
 # start a screenshotter
-bindsym Print exec deepin-screenshot
+bindsym Print exec flameshot gui
 
 # change focus
 bindsym $mod+h focus left
