@@ -2,7 +2,7 @@
 
 " *************** REQUIREMENTS  *****************
 "
-" Vim 8+ with clipboard
+" NeoVim
 "
 " vim-plug
 " https://github.com/junegunn/vim-plug
@@ -21,12 +21,11 @@
 
 " ***************** PLUGINS *********************
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/site/autoload')
 
 " Praise the Pope
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-pathogen'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat'
@@ -45,6 +44,7 @@ Plug 'godlygeek/tabular'
 Plug 'benmills/vimux'
 Plug 'embear/vim-localvimrc'
 Plug 'ntenczar/todo.vim'
+Plug 'vim-test/vim-test'
 
 " Pretty Colors and Visual Stuff
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -52,25 +52,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 
-" YavaScripte™ & Frontend Dev
-Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
-" Misc Languages (Rust, Elixir, SASS)
+" Language Support
 Plug 'sheerun/vim-polyglot'
-Plug 'mhinz/vim-mix-format'
-Plug 'rust-lang/rust.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Also
+" :CocInstall coc-eslint coc-prettier
 
 call plug#end()
-
-execute pathogen#infect()
 
 " ******************* FZF ***********************
 
@@ -87,9 +77,6 @@ execute pathogen#infect()
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " ************ General Commands o7 ***************
-
-set nocompatible
-filetype off
 
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
@@ -125,15 +112,11 @@ set showcmd
 set cmdheight=2
 
 " Syntax Higlighting
-filetype off
-filetype plugin on
 filetype plugin indent on
+syntax enable
 
 " read a file when it is changed from the outside
 set autoread
-
-" Use grep
-" set grepprg=grep\ -nH\ $*
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=black
@@ -181,8 +164,6 @@ set nolazyredraw
 " Second paren
 highlight MatchParen ctermbg=4
 
-syntax enable "Enable syntax hl
-
 "set font/shell
 set gfn=Inconsolata\-dz\ for\ Powerline\ 10
 set shell=/bin/bash
@@ -202,7 +183,7 @@ set ffs=unix,dos,mac "Default file types
 
 " No sound on errors
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 set tm=500
 
@@ -232,27 +213,13 @@ set cursorline
 
 " powerline doesn't display without this guy
 set laststatus=2
-
-set textwidth=80
 set formatoptions+=t
 
-" 80 columns for life
-set colorcolumn=80
-syntax on
 color dracula
 
 "************ PLUGIN SPECIFIC STUFF *************
 
-let g:prettier#exec_cmd_async = 1
-"let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql PrettierAsync
-
-" Dead or Alive You're Coming With Me
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
-\   'elixir': []
-\}
+let g:coc_global_extensions = ['coc-elixir', 'coc-eslint', 'coc-prettier']
 
 " use ctrl + p for fzf fuzzy file search with ripgrep
 noremap <C-p> :Files <Enter>
@@ -271,14 +238,13 @@ nnoremap <Leader>n :NERDTreeToggle<cr>
 " correctly use airline symbols
 let g:airline_powerline_fonts = 1
 
-" JSX syntax highlight in .js files
-let g:jsx_ext_required = 0
+" Set default of 80 columns for most everything
+set colorcolumn=80
+set textwidth=80
 
-" for EMCAScript 6 and jsx
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-autocmd BufRead,BufNewFile *.jsx setfiletype javascript
-
-let coffee_lint_options = '-f coffeelint.json'
+" for elixir projects the mix format default is 98 cols
+autocmd BufRead,BufNewFile *.ex,*.exs setlocal textwidth=98
+autocmd BufRead,BufNewFile *.ex,*.exs setlocal colorcolumn=98
 
 " don't word wrap html
 autocmd bufreadpre *.html setlocal textwidth=0
@@ -300,18 +266,44 @@ let g:mix_format_on_save = 1
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
 filetype on
-au BufNewFile,BufRead *.ums set filetype=ums
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " color codes helpfully grabbed from:
 " https://jonasjacek.github.io/colors/
 let g:todo_categories = {
-  \'work': '99',
-  \'beer': '94',
-  \'bike': '232',
-  \'misc': '196',
-  \'life': '31',
-  \'home': '118',
-  \'todo': '7',
-  \'maine': '136',
-  \'dnd': '2'
-  \}
+      \'work': '99',
+      \'beer': '94',
+      \'bike': '232',
+      \'misc': '196',
+      \'life': '31',
+      \'home': '118',
+      \'todo': '7',
+      \'maine': '136',
+      \'dnd': '2'
+      \}
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+  augroup WSLYank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+  augroup END
+endif
+
+" Elixir unit testing
+let test#strategy="neovim"
+let test#neovim#term_position = "botright"
+nmap t<C-n> :TestNearest<CR>
+nmap t<C-i> :TestNearest --interactive<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+function! ElixirTransform(cmd) abort
+  if len(matchstr(a:cmd, '\v^mix test.*--interactive')) > 0
+    return substitute('iex -S ' . a:cmd, '--interactive', '', '')
+  else
+    return a:cmd
+  end
+endfunction
+let g:test#custom_transformations = {'elixir': function('ElixirTransform')}
+let g:test#transformation = 'elixir'

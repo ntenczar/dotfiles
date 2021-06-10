@@ -3,17 +3,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-if [ -f ~/.zshrc-loca ]; then
-  source ~/.zshrc-loca
-fi
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
-
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -21,19 +10,6 @@ export EDITOR="$VISUAL"
 
 export PATH="$HOME/.bin":$PATH
 export PATH="$HOME/.cargo/bin":$PATH
-
-alias crx-kitchen-sink="tmuxinator start crx-ui && tmuxinator start wysiwyg && \
-  tmuxinator start javascript-sdk && tmuxinator start crx-background"
-
-alias appcues-kitchen-sink="tmuxinator start crx-background && \
-  tmuxinator start javascript-sdk && \
-  tmuxinator start crx-ui && \
-  tmuxinator start wysiwyg && \
-  tmuxinator start content-api && \
-  tmuxinator start appcues-api && \
-  tmuxinator start lambdas"
-
-source ~/.bin/tmuxinator.zsh
 
 export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 
@@ -44,14 +20,13 @@ export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+# add history to iex
+export ERL_AFLAGS="-kernel shell_history enabled";
+
 . $HOME/.asdf/asdf.sh
 
-. $HOME/.asdf/completions/asdf.bash
+# zplug shenanigans
+source ~/.zplug/init.zsh
+zplug "kiurchv/asdf.plugin.zsh", defer:2
 
-# added by travis gem
-[ -f /home/nate/.travis/travis.sh ] && source /home/nate/.travis/travis.sh
-
-# add history to iex
-ERL_AFLAGS="-kernel shell_history enabled";
-
-eval $(keychain --eval --quiet id_rsa)
+plugins+=(asdf)
