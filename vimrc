@@ -201,7 +201,6 @@ let mapleader = ","
 "Buffer Explorer
 noremap <Leader>b :BufExplorer<CR>
 
-"noremap <Leader>p :set paste<cr>
 noremap <Leader>vi :tabe ~/.vimrc<CR>
 
 " Always show line numbers and current position

@@ -3,8 +3,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+alias vim=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -30,3 +31,6 @@ source ~/.zplug/init.zsh
 zplug "kiurchv/asdf.plugin.zsh", defer:2
 
 plugins+=(asdf)
+
+alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
+export NEOVIM_WIN_DIR='/mnt/c/Program Files/Neovim'
