@@ -30,5 +30,3 @@ source ~/.zplug/init.zsh
 zplug "kiurchv/asdf.plugin.zsh", defer:2
 
 plugins+=(asdf)
-
-alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
