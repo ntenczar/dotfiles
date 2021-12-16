@@ -3,13 +3,16 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export VISUAL=vim
+export PATH="$HOME/.bin":$PATH
+export PATH="$HOME/.cargo/bin":$PATH
+export PATH="$HOME/.local/bin":$PATH
+
+alias vim=~/.local/bin/lvim
+
+export VISUAL=lvim
 export EDITOR="$VISUAL"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export PATH="$HOME/.bin":$PATH
-export PATH="$HOME/.cargo/bin":$PATH
 
 export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 

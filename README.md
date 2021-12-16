@@ -1,4 +1,11 @@
 # dotfiles
+Nate's Dotfiles
+
+Featuring:
+- LunarVim Config
+- Tmux Config
+- Zsh/Zprezto Config
+- Bootstrapping Script for Symlinks
 
 ## Setup
 
