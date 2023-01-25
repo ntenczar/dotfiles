@@ -6,22 +6,39 @@ lvim.colorscheme = "dracula"
 lvim.leader = ","
 
 -- Configure builtin plugins
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- Treesitter parsers change this to a table of the languages you want i.e. {"java", "python", javascript}
-lvim.builtin.treesitter.ensure_installed = "maintained"
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "rust",
+  "java",
+  "yaml",
+  "elixir",
+  "erlang",
+  "heex"
+}
+
 lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enable = true
 
 -- autopairs sucks smell ya later
-lvim.builtin.autopairs.active = false
+require('nvim-autopairs').disable()
 
 -- Disable virtual text
-lvim.lsp.diagnostics.virtual_text = false
-
--- Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
--- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
-vim.list_extend(lvim.lsp.override, { "pyright" })
+--lvim.lsp.diagnostics.virtual_text = false
 
 -- Setup Formatters
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -45,13 +62,18 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  {"Mofiqul/dracula.nvim"},
-  {'edkolev/tmuxline.vim'},
-  {'christoomey/vim-tmux-navigator'},
-  {'tpope/vim-fugitive'},
-  {'tpope/vim-rhubarb'}
+  { "Mofiqul/dracula.nvim" },
+  { 'edkolev/tmuxline.vim' },
+  { 'christoomey/vim-tmux-navigator' },
+  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-rhubarb' },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle"
+  }
 }
 
+--[[
 require('telescope').setup {
   defaults = {
     vimgrep_arguments = {
@@ -67,24 +89,26 @@ require('telescope').setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
     }
   },
   pickers = {
   }
 }
+]]
 
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
 -- All Miscellanous Configuration
-local set = vim.opt
+--local set = vim.opt
 
+--[[
 set.tabstop = 2
 set.shiftwidth = 2
 set.softtabstop = 2
@@ -92,6 +116,7 @@ set.expandtab = true
 set.smarttab = true
 set.autoindent = true
 set.smartindent = true
+]]
 
 -- remove trailing whitespace in files
 vim.cmd [[
