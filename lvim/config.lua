@@ -65,11 +65,29 @@ lvim.plugins = {
   { "Mofiqul/dracula.nvim" },
   { 'edkolev/tmuxline.vim' },
   { 'christoomey/vim-tmux-navigator' },
-  { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb' },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle"
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = { "fugitive" }
   }
 }
 
