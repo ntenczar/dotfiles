@@ -99,3 +99,5 @@ require('telescope').load_extension('fzf')
 vim.cmd [[
   autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 ]]
+
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard

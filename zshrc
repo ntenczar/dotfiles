@@ -28,8 +28,7 @@ export ERL_AFLAGS="-kernel shell_history enabled";
 
 . $HOME/.asdf/asdf.sh
 
-# zplug shenanigans
-source ~/.zplug/init.zsh
-zplug "kiurchv/asdf.plugin.zsh", defer:2
-
-plugins+=(asdf)
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
