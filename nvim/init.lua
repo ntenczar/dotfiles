@@ -337,7 +337,7 @@ do
   -- You can also have more advanced specs, which we will talk about later.
   --
   -- For most plugins its not enough to install them, you also need to call their `.setup()` to start them.
-  
+
   vim.pack.add { gh 'christoomey/vim-tmux-navigator' }
 
   -- praise the Pope
@@ -994,4 +994,10 @@ end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
+-- set clipboard to global
 vim.opt.clipboard = "unnamedplus"
+
+-- remove trailing whitespace in files
+vim.cmd [[
+  autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+]]
