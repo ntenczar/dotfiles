@@ -1,9 +1,20 @@
 #!/bin/bash
 
 PWD=`pwd`
+echo "Symlinking tmux.conf"
 ln -sf "$PWD/tmux.conf" ~/.tmux.conf
 
-ln -sf "$PWD/lvim/config.lua" ~/.config/lvim/config.lua
+echo "Creating nvim directories in .config"
+mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.config/nvim/lua"
+mkdir -p "$HOME/.config/nvim/lua/kickstart"
+mkdir -p "$HOME/.config/nvim/lua/kickstart/plugins"
+mkdir -p "$HOME/.config/nvim/lua/custom"
+mkdir -p "$HOME/.config/nvim/lua/custom/plugins"
 
-ln -sf "$PWD/zpreztorc" ~/.zpreztorc
-ln -sf "$PWD/zshrc" ~/.zshrc
+echo "Symlinking nvim configs to .config/nvim"
+ln -sf "$PWD/nvim/init.lua" "$HOME/.config/nvim"
+ln -sf "$PWD/nvim/lua/kickstart/*" "$HOME/.config/nvim/lua/kickstart"
+ln -sf "$PWD/nvim/lua/kickstart/plugins/*" "$HOME/.config/nvim/lua/kickstart/plugins"
+ln -sf "$PWD/nvim/lua/custom/plugins/*" "$HOME/.config/nvim/lua/custom/plugins"
+ln -sf "$PWD/nvim/.stylelua.toml" "$HOME/.config/nvim/.stylelua.toml"
