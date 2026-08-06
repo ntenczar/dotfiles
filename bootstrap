@@ -1,20 +1,30 @@
 #!/bin/bash
 
 PWD=`pwd`
+CONFIGDIR="$HOME/.config"
+
 echo "Symlinking tmux.conf"
-ln -sf "$PWD/tmux.conf" ~/.tmux.conf
+ln -sf "$PWD/tmux.conf" "$HOME/.tmux.conf"
 
 echo "Creating nvim directories in .config"
-mkdir -p "$HOME/.config/nvim"
-mkdir -p "$HOME/.config/nvim/lua"
-mkdir -p "$HOME/.config/nvim/lua/kickstart"
-mkdir -p "$HOME/.config/nvim/lua/kickstart/plugins"
-mkdir -p "$HOME/.config/nvim/lua/custom"
-mkdir -p "$HOME/.config/nvim/lua/custom/plugins"
+mkdir -p "$CONFIGDIR/nvim"
+mkdir -p "$CONFIGDIR/nvim/lua"
+mkdir -p "$CONFIGDIR/nvim/lua/kickstart"
+mkdir -p "$CONFIGDIR/nvim/lua/kickstart/plugins"
+mkdir -p "$CONFIGDIR/nvim/lua/custom"
+mkdir -p "$CONFIGDIR/nvim/lua/custom/plugins"
 
 echo "Symlinking nvim configs to .config/nvim"
-ln -sf "$PWD/nvim/init.lua" "$HOME/.config/nvim"
-ln -sf "$PWD/nvim/lua/kickstart/*" "$HOME/.config/nvim/lua/kickstart"
-ln -sf "$PWD/nvim/lua/kickstart/plugins/*" "$HOME/.config/nvim/lua/kickstart/plugins"
-ln -sf "$PWD/nvim/lua/custom/plugins/*" "$HOME/.config/nvim/lua/custom/plugins"
-ln -sf "$PWD/nvim/.stylua.toml" "$HOME/.config/nvim/.stylua.toml"
+ln -sf "$PWD/nvim/init.lua" "$CONFIGDIR/nvim"
+ln -sf "$PWD/nvim/lua/kickstart/*" "$CONFIGDIR/nvim/lua/kickstart"
+ln -sf "$PWD/nvim/lua/kickstart/plugins/*" "$CONFIGDIR/nvim/lua/kickstart/plugins"
+ln -sf "$PWD/nvim/lua/custom/plugins/*" "$CONFIGDIR/nvim/lua/custom/plugins"
+ln -sf "$PWD/nvim/.stylua.toml" "$CONFIGDIR/nvim/.stylua.toml"
+
+echo "Creating alacritty directories in .config and symlinking"
+mkdir -p "$CONFIGDIR/alacritty"
+ln -sf "$PWD/alacritty/alacritty.toml" "$CONFIGDIR/alacritty/alacritty.toml"
+ln -sf "$PWD/alacritty/tokyonight_storm.toml" "$CONFIGDIR/alacritty/tokyonight_storm.toml"
+
+echo "Done!"
+

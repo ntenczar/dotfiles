@@ -92,14 +92,14 @@ do
   -- Enable faster startup by caching compiled Lua modules
   vim.loader.enable()
 
-  -- Set <space> as the leader key
+  -- Set , as the leader key
   -- See `:help mapleader`
   --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-  vim.g.mapleader = ' '
-  vim.g.maplocalleader = ' '
+  vim.g.mapleader = ','
+  vim.g.maplocalleader = ','
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -337,7 +337,13 @@ do
   -- You can also have more advanced specs, which we will talk about later.
   --
   -- For most plugins its not enough to install them, you also need to call their `.setup()` to start them.
-  --
+  
+  vim.pack.add { gh 'christoomey/vim-tmux-navigator' }
+
+  -- praise the Pope
+  vim.pack.add { gh 'tpope/vim-rhubarb' }
+  vim.pack.add { gh 'tpope/vim-fugitive' }
+
   -- For example, lets say we want to install `guess-indent.nvim` - a plugin for
   -- automatically detecting and setting the indentation.
   --
@@ -393,7 +399,7 @@ do
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'tokyonight-storm'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -976,8 +982,8 @@ do
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
   -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
-  -- require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
+  --require 'kickstart.plugins.neo-tree'
+  --require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --
