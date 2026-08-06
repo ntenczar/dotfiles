@@ -1001,3 +1001,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.cmd [[
   autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 ]]
+
+vim.opt.textwidth = 120
+vim.opt.colorcolumn = '120'
